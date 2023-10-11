@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
     Collapse,
     Navbar,
@@ -6,7 +7,7 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
+    // NavLink,
     // UncontrolledDropdown,
     // DropdownToggle,
     // DropdownMenu,
@@ -27,19 +28,19 @@ function CustomNavbar(args) {
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="me-auto" navbar>
                         <NavItem>
-                            <NavLink href="/">Store</NavLink>
+                            <Link to="/" className='text-decoration-none pe-auto'>Store</Link>
                         </NavItem>
                     </Nav>
                     <Nav>
-                        <NavItem >
-                            <NavLink href="/login">
+                        <NavItem className='mx-3'>
+                            <Link to="/login" className='text-decoration-none pe-auto'>
                                 Login
-                            </NavLink>
+                            </Link>
                         </NavItem>
                         <NavItem >
-                            <NavLink href="/signup">
+                            <Link to="/signup" className='text-decoration-none pe-auto'>
                                 Signup
-                            </NavLink>
+                            </Link>
                         </NavItem>
                     </Nav>
                 </Collapse>

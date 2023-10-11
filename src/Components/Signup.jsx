@@ -1,25 +1,29 @@
 import React, { useState } from 'react'
 import { Container, Row, Col, Card, CardBody, Label, Input, CardHeader, Button, Form } from 'reactstrap'
+import { createUser } from './Service/UserService';
+import { toast } from 'react-toastify';
 
 function Signup() {
 
-    const [user, setUser] = useState({ name: undefined, email: undefined, password: undefined, address: '', phone: undefined, active: true });
+    const [user, setUser] = useState({ name: undefined, email: undefined, password: undefined, phone: undefined, active: true, address: 'random' });
 
     const onFieldChange = (event, fieldName) => {
         const fieldValue = event.target.value
         setUser({ ...user, [fieldName]: fieldValue })
-        // console.log(user)
     }
 
     const registerHandler = (event) => {
         event.preventDefault();
-        console.log("Submit button clicked!")
-        alert("User Saved!");
+        createUser(user).then(data => {
+            toast.success("User added");
+        }).catch(error => {
+            toast.error(error.response.data.message)
+        })
     }
 
     const resetHandler = (event) => {
         event.preventDefault();
-        setUser({ name: '', email: '', password: '', address: undefined, phone: '', active: true })
+        setUser({ name: '', email: '', password: '', phone: '', address: 'random', active: true })
     }
 
     return (
@@ -49,10 +53,10 @@ function Signup() {
                                     {user.password === "" && <span style={{ color: "red", marginLeft: "0px", marginTop: "5px", fontSize: "12px" }} className='text-center'>Password cannot be empty</span>}
                                 </div>
 
-                                <div className='my-3'>
+                                {/* <div className='my-3'>
                                     <Label for='address'>Address</Label>
                                     <Input type='textarea' id='address' onChange={(event) => onFieldChange(event, 'address')} value={user.address || ''}></Input>
-                                </div>
+                                </div> */}
 
                                 <div className='my-3'>
                                     <Label for='phone'>Phone</Label><b><Label style={{ color: "Red" }}>*</Label></b>
