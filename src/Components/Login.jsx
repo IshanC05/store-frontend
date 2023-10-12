@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import { Button, Card, CardBody, CardHeader, Col, Container, Form, Input, Label, Row } from 'reactstrap'
-import { login } from './Service/UserService';
+import { loginUser } from './Service/UserService';
 import { toast } from 'react-toastify';
+import { login } from './Auth';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+
+    const navigate = useNavigate();
 
     const [loginData, setLoginData] = useState({ username: undefined, password: undefined });
 
@@ -14,8 +18,10 @@ function Login() {
 
     const handleLogin = (event) => {
         event.preventDefault();
-        login(loginData).then(data => {
-            console.log(data)
+        loginUser(loginData).then(data => {
+            login(data, () => {
+                navigate("/dashboard")
+            })
             toast.success("Login successful")
         }).catch(error => {
             toast.error(error.response.data.message)
