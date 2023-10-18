@@ -17,13 +17,12 @@ function App() {
         <ToastContainer position='top-center' />
         <CustomNavbar />
         <Routes>
-          <Route path='/' element={<Store />}></Route>
+          <Route path='/store/:categoryId' element={<Store />}></Route>
           <Route path='/signup' element={<Signup />}></Route>
           <Route path='/login' element={<Login />}></Route>
           {/* Private Routes */}
           <Route path='user' element={<PrivateRoute />}>
             <Route path='dashboard' element={<Dashboard />}></Route>
-
           </Route>
         </Routes>
       </BrowserRouter>

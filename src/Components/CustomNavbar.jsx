@@ -31,7 +31,7 @@ function CustomNavbar(args) {
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="me-auto" navbar>
                         <NavItem>
-                            <Link to="/" className='text-decoration-none pe-auto'>Store</Link>
+                            <Link to="/store/all" className='text-decoration-none pe-auto'>Store</Link>
                         </NavItem>
                     </Nav>
                     {!isLoggedIn() &&
