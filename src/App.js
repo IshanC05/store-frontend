@@ -6,9 +6,9 @@ import CustomNavbar from './Components/CustomNavbar';
 import Signup from './Components/Signup';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-import Dashboard from './Components/Dashboard';
 import PrivateRoute from './Components/PrivateRoute';
 import Store from './Components/Store';
+import Product from './Components/Product';
 
 function App() {
   return (
@@ -17,13 +17,14 @@ function App() {
         <ToastContainer position='top-center' />
         <CustomNavbar />
         <Routes>
-          <Route path='/store/:categoryId' element={<Store />}></Route>
-          <Route path='/signup' element={<Signup />}></Route>
-          <Route path='/login' element={<Login />}></Route>
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/store/:categoryId' element={<Store />} />
+          <Route path='/product/:productId' element={<Product />} />
           {/* Private Routes */}
-          <Route path='user' element={<PrivateRoute />}>
-            <Route path='dashboard' element={<Dashboard />}></Route>
-          </Route>
+          <Route path='user' element={<PrivateRoute />} />
+          <Route path='dashboard' element={<PrivateRoute />} />
+          {/*  */}
         </Routes>
       </BrowserRouter>
     </div>

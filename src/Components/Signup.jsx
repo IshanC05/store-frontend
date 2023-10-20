@@ -17,7 +17,8 @@ function Signup() {
         createUser(user).then(data => {
             toast.success("User added");
         }).catch(error => {
-            toast.error(error.response.data.message)
+            const allErrors = error.response.data
+            Object.values(allErrors).forEach(errorMessage => toast.error(errorMessage));
         })
     }
 
@@ -52,11 +53,6 @@ function Signup() {
                                     <Input type='password' id='password' onChange={(event) => onFieldChange(event, 'password')} value={user.password || ''}></Input>
                                     {user.password === "" && <span style={{ color: "red", marginLeft: "0px", marginTop: "5px", fontSize: "12px" }} className='text-center'>Password cannot be empty</span>}
                                 </div>
-
-                                {/* <div className='my-3'>
-                                    <Label for='address'>Address</Label>
-                                    <Input type='textarea' id='address' onChange={(event) => onFieldChange(event, 'address')} value={user.address || ''}></Input>
-                                </div> */}
 
                                 <div className='my-3'>
                                     <Label for='phone'>Phone</Label><b><Label style={{ color: "Red" }}>*</Label></b>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from './Sidebar'
 import './CSS/store.scss'
-import Product from './Product'
+import ProductItem from './ProductItem'
 import { loadProduct } from './Service/ProductService'
 import { useParams } from 'react-router-dom'
 import { loadProductByCategory } from './Service/CategoryService'
@@ -39,7 +39,7 @@ function Store() {
                 <div className="row">
                     {(productDetails) && productDetails.content.map((each, index) => {
                         return <div className="col-md-4" key={index}>
-                            <Product product={each} />
+                            <ProductItem product={each} />
                         </div>
                     })}
                 </div>

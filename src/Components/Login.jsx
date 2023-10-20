@@ -24,7 +24,8 @@ function Login() {
             })
             toast.success("Login successful")
         }).catch(error => {
-            toast.error(error.response.data.message)
+            const allErrors = error.response.data
+            Object.values(allErrors).forEach(errorMessage => toast.error(errorMessage));
         })
     }
 
@@ -52,7 +53,6 @@ function Login() {
 
                                 <div className='my-3'>
                                     <Button color='success'>Login</Button>
-                                    {/* <Button color='warning' className='mx-3' >Reset</Button> */}
                                 </div>
                             </Form>
                         </CardBody>
