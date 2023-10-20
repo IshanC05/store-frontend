@@ -47,7 +47,7 @@ function Product() {
                                     <p className="product-description text-wrap provide-margin-left">{productData.productDesc}</p>
                                     <h4 className="price provide-margin-left">Price: <span>₹ {productData.productPrice}</span></h4>
                                     <div className="action my-5">
-                                        <button className="add-to-cart btn btn-default mx-2" type="button">add to cart</button>
+                                        <button className="add-to-cart btn btn-default mx-2" type="button">add to cart </button>
                                     </div>
                                 </div>
                             </div>

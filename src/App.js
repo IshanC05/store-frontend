@@ -9,6 +9,8 @@ import { ToastContainer } from 'react-toastify';
 import PrivateRoute from './Components/PrivateRoute';
 import Store from './Components/Store';
 import Product from './Components/Product';
+import Dashboard from './Components/Dashboard';
+import Cart from './Components/Cart';
 
 function App() {
   return (
@@ -21,10 +23,10 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/store/:categoryId' element={<Store />} />
           <Route path='/product/:productId' element={<Product />} />
-          {/* Private Routes */}
-          <Route path='user' element={<PrivateRoute />} />
-          <Route path='dashboard' element={<PrivateRoute />} />
-          {/*  */}
+          <Route element={<PrivateRoute />}>
+            <Route path='dashboard' element={<Dashboard />} />
+            <Route path='cart' element={<Cart />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

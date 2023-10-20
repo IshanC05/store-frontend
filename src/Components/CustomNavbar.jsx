@@ -9,8 +9,10 @@ import {
     NavItem
 } from 'reactstrap';
 import { getLoggedInUserDetails, isLoggedIn, logout } from './Auth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
-function CustomNavbar(args) {
+function CustomNavbar() {
 
     const navigate = useNavigate();
 
@@ -51,6 +53,11 @@ function CustomNavbar(args) {
                         </>}
                     {localStorage.getItem("data") && <>
                         <Nav>
+                            <NavItem className='mx-3'>
+                                <Link to="/cart" className='text-decoration-none pe-auto'>
+                                    <FontAwesomeIcon icon={faCartShopping} />
+                                </Link>
+                            </NavItem>
                             <NavItem className='mx-3'>
                                 <Link to="/dashboard" className='text-decoration-none pe-auto'>
                                     {getLoggedInUserDetails().name}
