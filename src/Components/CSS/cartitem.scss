@@ -1,0 +1,9 @@
+.img-max-height {
+    max-height: 100%;
+}
+
+@media screen and (min-width : 768px) {
+    .img-max-height {
+        max-height: 128px;
+    }
+}

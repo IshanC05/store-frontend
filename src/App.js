@@ -27,6 +27,7 @@ function App() {
             <Route path='dashboard' element={<Dashboard />} />
             <Route path='cart' element={<Cart />} />
           </Route>
+          <Route path="*" element={<p>There's nothing here: 404!</p>} />
         </Routes>
       </BrowserRouter>
     </div>

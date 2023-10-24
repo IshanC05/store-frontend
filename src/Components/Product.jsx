@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { loadProductByProductId } from './Service/ProductService'
 
 function Product() {
@@ -8,12 +8,6 @@ function Product() {
 
     const [productData, setProductData] = useState(null)
     const [loading, setLoading] = useState(true);
-
-    const navigate = useNavigate()
-
-    const handleGoBack = () => {
-        navigate("/store/all")
-    }
 
     useEffect(() => {
         getProductDataById(productId)
@@ -39,7 +33,7 @@ function Product() {
                             <div className="wrapper row">
                                 <div className="preview col-md-6">
                                     <div className="preview-pic tab-content">
-                                        <div className="tab-pane active" id="pic-1"><img src={productData.imageName} style={{ maxHeight: "450px", objectFit: "contain" }} /></div>
+                                        <div className="tab-pane active" id="pic-1"><img src={productData.imageName} style={{ maxHeight: "450px", objectFit: "contain" }} alt="product" /></div>
                                     </div>
                                 </div>
                                 <div className="details col-md-6 provide-margin-left">

@@ -20,7 +20,7 @@ function Sidebar() {
     return (
         <div className='sidebar'>
             <div className='top'>
-                <span className='logo'>Categories</span>
+                <span className='logo '>Categories</span>
             </div>
             <hr />
             <div className="center"></div>
