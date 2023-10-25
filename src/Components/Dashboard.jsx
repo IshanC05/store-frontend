@@ -22,8 +22,10 @@ function Dashboard() {
 
     return (
         <>
-            <h1>Hi {userData.name}</h1>
-            <div>Dashboard</div>
+            <div className='container my-2'>
+                <h1>Hi {userData.name}</h1>
+                <div>Dashboard</div>
+            </div>
         </>
     )
 }

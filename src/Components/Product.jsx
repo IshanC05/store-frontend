@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { loadProductByProductId } from './Service/ProductService'
+import CartContext from './Context/Cart/CartContext'
 
 function Product() {
 
@@ -9,14 +10,23 @@ function Product() {
     const [productData, setProductData] = useState(null)
     const [loading, setLoading] = useState(true);
 
+    const { updateProductQuantity } = useContext(CartContext)
+
     useEffect(() => {
         getProductDataById(productId)
         // eslint-disable-next-line
     }, [])
 
+
+    const handleAddToCart = () => {
+        console.log("Added to cart")
+        const itemRequest = { productId: productId, quantity: 1 }
+        // console.log(itemRequest)
+        updateProductQuantity(itemRequest)
+    }
+
     const getProductDataById = (productId) => {
         loadProductByProductId(productId).then(response => {
-            console.log(response);
             setProductData(response)
             setLoading(false)
         }).catch(error => {
@@ -41,7 +51,7 @@ function Product() {
                                     <p className="product-description text-wrap provide-margin-left">{productData.productDesc}</p>
                                     <h4 className="price provide-margin-left">Price: <span>₹ {productData.productPrice}</span></h4>
                                     <div className="action my-5">
-                                        <button className="add-to-cart btn btn-default mx-2" type="button">add to cart </button>
+                                        <button className="add-to-cart btn btn-default mx-2" type="button" onClick={handleAddToCart}>add to cart </button>
                                     </div>
                                 </div>
                             </div>

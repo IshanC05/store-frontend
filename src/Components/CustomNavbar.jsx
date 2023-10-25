@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
     Collapse,
@@ -11,10 +11,13 @@ import {
 import { getLoggedInUserDetails, isLoggedIn, logout } from './Auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import CartContext from './Context/Cart/CartContext';
 
 function CustomNavbar() {
 
     const navigate = useNavigate();
+
+    const { resetCart } = useContext(CartContext)
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -22,6 +25,7 @@ function CustomNavbar() {
 
     const handleLogout = () => {
         logout();
+        resetCart();
         navigate("/login")
     }
 
