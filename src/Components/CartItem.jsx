@@ -7,8 +7,8 @@ function CartItem({ productId, productName, productDesc, imageName, productPrice
 
     const { updateProductQuantity } = useContext(CartContext)
 
-    const handleQuantityUpdate = () => {
-        const itemRequest = { productId, "quantity": quantity + 1 }
+    const handleQuantityUpdate = (value) => {
+        const itemRequest = { productId, "quantity": value }
         updateProductQuantity(itemRequest)
     }
 
@@ -33,10 +33,9 @@ function CartItem({ productId, productName, productDesc, imageName, productPrice
                             <div className="d-flex justify-content-between">
                                 <span className="card-text">₹ {productPrice}</span>
                                 <div style={{ padding: "2px" }}>
-                                    <button type="button" className="btn btn-primary btn-sm" onClick={handleQuantityUpdate}>+</button>
-                                    {/* <span className="card-text border border-primary" style={{ margin: "0px 15px", padding: "0px 5px" }}>{quantity}</span> */}
+                                    <button type="button" className="btn btn-primary btn-sm" onClick={() => handleQuantityUpdate(+1)}>+</button>
                                     <button type="button" className="btn btn-primary disabled btn-sm" style={{ margin: "0px 15px" }}>{quantity}</button>
-                                    <button type="button" className="btn btn-primary btn-sm">-</button>
+                                    <button type="button" className="btn btn-primary btn-sm" onClick={() => handleQuantityUpdate(-1)} disabled={quantity === 1}>-</button>
                                 </div>
                             </div>
                         </div>

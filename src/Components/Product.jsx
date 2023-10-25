@@ -19,9 +19,7 @@ function Product() {
 
 
     const handleAddToCart = () => {
-        console.log("Added to cart")
         const itemRequest = { productId: productId, quantity: 1 }
-        // console.log(itemRequest)
         updateProductQuantity(itemRequest)
     }
 

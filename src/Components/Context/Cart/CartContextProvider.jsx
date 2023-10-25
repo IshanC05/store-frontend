@@ -29,6 +29,7 @@ function CartContextProvider({ children }) {
     const resetCart = () => {
         setCart(null)
         setLoading(true)
+        setCartTotal(0.0)
     }
 
     const calculateCartTotal = (cartData) => {
@@ -43,12 +44,14 @@ function CartContextProvider({ children }) {
         try {
             const jwtToken = getToken();
             const token = "Bearer " + jwtToken;
-            const response = await axios.post(`${baseURL}/cart`, itemRequest, {
+            const response = await axios.post(`${baseURL}/cart/`, itemRequest, {
                 headers: {
-                    "Authorization": token
+                    "Authorization": token,
+                    "Content-Type": "application/json"
                 }
             });
             console.log(response);
+            getCartDetails()
         } catch (error) {
             console.error(error);
         }
