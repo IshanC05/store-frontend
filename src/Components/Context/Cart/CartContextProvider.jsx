@@ -45,13 +45,14 @@ function CartContextProvider({ children }) {
         try {
             const jwtToken = getToken();
             const token = "Bearer " + jwtToken;
+            // eslint-disable-next-line
             const response = await axios.post(`${baseURL}/cart/`, itemRequest, {
                 headers: {
                     "Authorization": token,
                     "Content-Type": "application/json"
                 }
             });
-            console.log(response);
+            // console.log(response);
             toast.success(message)
             getCartDetails()
         } catch (error) {
@@ -63,6 +64,7 @@ function CartContextProvider({ children }) {
         try {
             const jwtToken = getToken();
             const token = "Bearer " + jwtToken;
+            // eslint-disable-next-line
             const response = await axios.delete(`${baseURL}/cart/${productId}`, {
                 headers: {
                     "Authorization": token,

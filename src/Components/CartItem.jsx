@@ -16,7 +16,7 @@ function CartItem({ productId, productName, productDesc, imageName, productPrice
     }
 
     const handleDelete = () => {
-        console.log('Delete called for productId ' + productId)
+        // console.log('Delete called for productId ' + productId)
         deleteProductFromCart(productId)
     }
 
