@@ -16,6 +16,7 @@ function Signup() {
         event.preventDefault();
         createUser(user).then(data => {
             toast.success("User added");
+            setUser({ name: undefined, email: undefined, password: undefined, phone: undefined, active: true, address: 'random' })
         }).catch(error => {
             const allErrors = error.response.data
             Object.values(allErrors).forEach(errorMessage => toast.error(errorMessage));

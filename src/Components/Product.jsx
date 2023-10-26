@@ -1,11 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { loadProductByProductId } from './Service/ProductService'
 import CartContext from './Context/Cart/CartContext'
+import { isLoggedIn } from './Auth'
 
 function Product() {
 
     const { productId } = useParams()
+
+    const navigate = useNavigate()
 
     const [productData, setProductData] = useState(null)
     const [loading, setLoading] = useState(true);
@@ -19,8 +22,13 @@ function Product() {
 
 
     const handleAddToCart = () => {
+        if (!isLoggedIn()) {
+            navigate("/login")
+        }
         const itemRequest = { productId: productId, quantity: 1 }
-        updateProductQuantity(itemRequest)
+        // const message = (value === 1) ? "Product added to Cart" : "Product Quantity updated";
+        const message = "Product added to the Cart"
+        updateProductQuantity(itemRequest, message)
     }
 
     const getProductDataById = (productId) => {

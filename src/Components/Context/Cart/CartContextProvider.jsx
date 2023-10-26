@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import CartContext from './CartContext'
 import axios from "axios";
 import { getToken } from '../../Auth';
+import { toast } from 'react-toastify';
 
 function CartContextProvider({ children }) {
 
@@ -40,7 +41,7 @@ function CartContextProvider({ children }) {
         setCartTotal(cartTotal)
     }
 
-    const updateProductQuantity = async (itemRequest) => {
+    const updateProductQuantity = async (itemRequest, message) => {
         try {
             const jwtToken = getToken();
             const token = "Bearer " + jwtToken;
@@ -51,6 +52,24 @@ function CartContextProvider({ children }) {
                 }
             });
             console.log(response);
+            toast.success(message)
+            getCartDetails()
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const deleteProductFromCart = async (productId) => {
+        try {
+            const jwtToken = getToken();
+            const token = "Bearer " + jwtToken;
+            const response = await axios.delete(`${baseURL}/cart/${productId}`, {
+                headers: {
+                    "Authorization": token,
+                    "Content-Type": "application/json"
+                }
+            });
+            toast.error("Product deleted from cart")
             getCartDetails()
         } catch (error) {
             console.error(error);
@@ -58,7 +77,7 @@ function CartContextProvider({ children }) {
     }
 
     return (
-        <CartContext.Provider value={{ cart, setCart, getCartDetails, loading, resetCart, cartTotal, updateProductQuantity }}>
+        <CartContext.Provider value={{ cart, setCart, getCartDetails, loading, resetCart, cartTotal, updateProductQuantity, deleteProductFromCart }}>
             {children}
         </CartContext.Provider>
     )
