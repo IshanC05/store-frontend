@@ -13,7 +13,9 @@ function Product() {
     const [productData, setProductData] = useState(null)
     const [loading, setLoading] = useState(true);
 
-    const { updateProductQuantity } = useContext(CartContext)
+    const { updateProductQuantity, formatPrice } = useContext(CartContext)
+
+    const formattedProductPrice = (productData && productData.productPrice ? formatPrice(productData.productPrice) : formatPrice(0))
 
     useEffect(() => {
         getProductDataById(productId)
@@ -55,7 +57,7 @@ function Product() {
                                 <div className="details col-md-6 provide-margin-left">
                                     <h3 className="product-title my-5 text-start provide-margin-left">{productData.productName}</h3>
                                     <p className="product-description text-wrap provide-margin-left">{productData.productDesc}</p>
-                                    <h4 className="price provide-margin-left">Price: <span>₹ {productData.productPrice}</span></h4>
+                                    <h4 className="price provide-margin-left">Price: <span>{formattedProductPrice}</span></h4>
                                     <div className="action my-5">
                                         <button className="add-to-cart btn btn-default mx-2" type="button" onClick={handleAddToCart}>add to cart </button>
                                     </div>

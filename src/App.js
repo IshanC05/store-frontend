@@ -17,7 +17,7 @@ function App() {
     <div >
       <CartContextProvider>
         <BrowserRouter>
-          <ToastContainer position='top-center' />
+          <ToastContainer position='top-right' />
           <CustomNavbar />
           <Routes>
             <Route path='/signup' element={<Signup />} />

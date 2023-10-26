@@ -5,7 +5,9 @@ import CartContext from './Context/Cart/CartContext'
 
 function Cart() {
 
-    const { cart, getCartDetails, loading, cartTotal } = useContext(CartContext)
+    const { cart, getCartDetails, loading, cartTotal, formatPrice } = useContext(CartContext)
+
+    const formattedCartTotal = cartTotal ? formatPrice(cartTotal) : formatPrice(0)
 
     useEffect(() => {
         getCartDetails()
@@ -31,7 +33,7 @@ function Cart() {
                         {
                             cart && cart.cartItem && cart.cartItem.length !== 0 && <div className="my-2" style={{ maxWidth: "600px" }}>
                                 <ListGroupItem>
-                                    <span >Cart Total: ₹ {cartTotal}</span>
+                                    <span ><b>Total: </b>{formattedCartTotal}</span>
                                 </ListGroupItem>
                             </div>
                         }

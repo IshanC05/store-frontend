@@ -9,9 +9,10 @@ import CartContext from './Context/Cart/CartContext';
 function ProductItem({ product }) {
 
     const navigate = useNavigate();
-    const { updateProductQuantity } = useContext(CartContext)
+    const { updateProductQuantity, formatPrice } = useContext(CartContext)
 
     const { productId, imageName, productName, productPrice, productDesc } = product
+    const formattedProductPrice = productPrice ? formatPrice(productPrice) : formatPrice(0)
 
     const handleView = () => {
         navigate("/product/" + productId)
@@ -31,7 +32,12 @@ function ProductItem({ product }) {
             <div className="card" >
                 <img src={imageName} className="card-img-top" alt="..." style={{ maxHeight: '250px', objectFit: 'cover' }} />
                 <div className="card-body cardBody-maxHeight">
-                    <h5 className="card-title">{productName} <span className='text-right'><b>₹</b><Badge color='success' pill style={{ marginLeft: '5px' }}>{productPrice}</Badge></span></h5>
+                    <div className='d-flex justify-content-between'>
+                        <h5 className="card-title">{productName}</h5>
+                        <span className='text-right'>
+                            <Badge color='success' pill style={{ marginLeft: '5px' }}>{formattedProductPrice}</Badge>
+                        </span>
+                    </div>
                     <p className="card-text">{productDesc}</p>
                     <div className='d-flex justify-content-between'>
                         <Button color='info' size='xl' className='m-2' onClick={handleView}>View</Button >

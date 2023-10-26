@@ -7,7 +7,9 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 function CartItem({ productId, productName, productDesc, imageName, productPrice, quantity }) {
 
-    const { updateProductQuantity, deleteProductFromCart } = useContext(CartContext)
+    const { updateProductQuantity, deleteProductFromCart, formatPrice } = useContext(CartContext)
+
+    const formattedProductPrice = productPrice ? formatPrice(productPrice) : formatPrice(0);
 
     const handleQuantityUpdate = (value) => {
         const itemRequest = { productId, "quantity": value }
@@ -45,7 +47,7 @@ function CartItem({ productId, productName, productDesc, imageName, productPrice
                             </div>
                             <p className="card-text">{productDesc}</p>
                             <div className="d-flex justify-content-between">
-                                <span className="card-text">₹ {productPrice}</span>
+                                <span className="card-text">{formattedProductPrice}</span>
                                 <div style={{ padding: "2px" }}>
                                     <button type="button" className="btn btn-primary btn-sm" onClick={() => handleQuantityUpdate(+1)}>+</button>
                                     <span style={{ margin: "0px 15px" }}>{quantity}</span>

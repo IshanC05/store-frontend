@@ -78,8 +78,17 @@ function CartContextProvider({ children }) {
         }
     }
 
+    const formatPrice = (price) => {
+        let rupee = new Intl.NumberFormat('en-IN', {
+            style: 'currency',
+            currency: 'INR',
+        });
+        // console.log(rupee.format(price))
+        return rupee.format(price);
+    }
+
     return (
-        <CartContext.Provider value={{ cart, setCart, getCartDetails, loading, resetCart, cartTotal, updateProductQuantity, deleteProductFromCart }}>
+        <CartContext.Provider value={{ cart, setCart, getCartDetails, loading, resetCart, cartTotal, updateProductQuantity, deleteProductFromCart, formatPrice }}>
             {children}
         </CartContext.Provider>
     )
