@@ -34,7 +34,7 @@ function Store() {
 
     return (
         <div className='store'>
-            <Sidebar></Sidebar>
+            <Sidebar />
             <div className="container">
                 <div className="row">
                     {(productDetails) && productDetails.content.map((each, index) => {
