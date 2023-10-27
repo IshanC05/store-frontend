@@ -6,12 +6,14 @@ import {
     NavbarToggler,
     NavbarBrand,
     Nav,
-    NavItem
+    NavItem,
+
 } from 'reactstrap';
 import { getLoggedInUserDetails, isLoggedIn, logout } from './Auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import CartContext from './Context/Cart/CartContext';
+import { toast } from 'react-toastify';
 
 function CustomNavbar() {
 
@@ -27,29 +29,41 @@ function CustomNavbar() {
         logout();
         resetCart();
         navigate("/login")
+        toast.success("Logout successful")
+    }
+
+    const linkStyle = {
+        color: 'black'
     }
 
     return (
         <div>
             <Navbar expand="md" className='px-5 shadow-sm'>
-                <NavbarBrand to="/">ElectroSouk</NavbarBrand>
+                <NavbarBrand>
+                    {/* <Link to="/" state={linkStyle}> */}
+                    ElectroSouk
+                    {/* </Link> */}
+                </NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="me-auto" navbar>
+                        <NavItem style={{ marginRight: "15px" }}>
+                            <Link to="/" className='text-decoration-none pe-auto' style={linkStyle}>Home</Link>
+                        </NavItem>
                         <NavItem>
-                            <Link to="/store/all" className='text-decoration-none pe-auto'>Store</Link>
+                            <Link to="/store/all" className='text-decoration-none pe-auto' style={linkStyle}>Store</Link>
                         </NavItem>
                     </Nav>
                     {!isLoggedIn() &&
                         <>
                             <Nav>
                                 <NavItem className='mx-3'>
-                                    <Link to="/login" className='text-decoration-none pe-auto'>
+                                    <Link to="/login" className='text-decoration-none pe-auto' style={linkStyle}>
                                         Login
                                     </Link>
                                 </NavItem>
                                 <NavItem >
-                                    <Link to="/signup" className='text-decoration-none pe-auto'>
+                                    <Link to="/signup" className='text-decoration-none pe-auto' style={linkStyle}>
                                         Signup
                                     </Link>
                                 </NavItem>
@@ -57,18 +71,18 @@ function CustomNavbar() {
                         </>}
                     {localStorage.getItem("data") && <>
                         <Nav>
-                            <NavItem className='mx-3'>
-                                <Link to="/cart" className='text-decoration-none pe-auto'>
+                            <NavItem style={{ marginRight: "35px" }}>
+                                <Link to="/cart" className='text-decoration-none pe-auto' >
                                     <FontAwesomeIcon icon={faCartShopping} />
                                 </Link>
                             </NavItem>
-                            <NavItem className='mx-3'>
-                                <Link to="/dashboard" className='text-decoration-none pe-auto'>
+                            <NavItem style={{ marginRight: "25px" }}>
+                                <Link to="/dashboard" className='text-decoration-none pe-auto' >
                                     {getLoggedInUserDetails().name}
                                 </Link>
                             </NavItem>
-                            <NavItem className='mx-3'>
-                                <Link to="/login" className='text-decoration-none pe-auto' onClick={handleLogout}>
+                            <NavItem >
+                                <Link to="/login" className='text-decoration-none pe-auto' onClick={handleLogout} style={linkStyle}>
                                     Logout
                                 </Link>
                             </NavItem>

@@ -11,6 +11,7 @@ import Product from './Components/Product';
 import Dashboard from './Components/Dashboard';
 import Cart from './Components/Cart';
 import CartContextProvider from './Components/Context/Cart/CartContextProvider';
+import Home from './Components/Home';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <ToastContainer position='top-right' />
           <CustomNavbar />
           <Routes>
+            <Route path='/' element={<Home />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/login' element={<Login />} />
             <Route path='/store/:categoryId' element={<Store />} />

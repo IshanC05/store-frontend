@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { getLoggedInUserDetails } from './Auth';
+import Orders from './Orders';
 
 function Dashboard() {
 
@@ -18,13 +19,14 @@ function Dashboard() {
         // eslint-disable-next-line
     }, [])
 
-
-
     return (
         <>
             <div className='container my-2'>
                 <h1>Hi {userData.name}</h1>
-                <div>Dashboard</div>
+                <hr />
+                <div className='container'>
+                    <Orders />
+                </div>
             </div>
         </>
     )

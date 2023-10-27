@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { loadProductByProductId } from './Service/ProductService'
 import CartContext from './Context/Cart/CartContext'
 import { isLoggedIn } from './Auth'
+import { Button } from 'reactstrap'
 
 function Product() {
 
@@ -28,7 +29,6 @@ function Product() {
             navigate("/login")
         }
         const itemRequest = { productId: productId, quantity: 1 }
-        // const message = (value === 1) ? "Product added to Cart" : "Product Quantity updated";
         const message = "Product added to the Cart"
         updateProductQuantity(itemRequest, message)
     }
@@ -46,7 +46,7 @@ function Product() {
         <>
             {!loading &&
                 <div className="container my-5">
-                    <div className="card">
+                    <div className="card border-0">
                         <div className="container-fliud">
                             <div className="wrapper row">
                                 <div className="preview col-md-6">
@@ -59,7 +59,7 @@ function Product() {
                                     <p className="product-description text-wrap provide-margin-left">{productData.productDesc}</p>
                                     <h4 className="price provide-margin-left">Price: <span>{formattedProductPrice}</span></h4>
                                     <div className="action my-5">
-                                        <button className="add-to-cart btn btn-default mx-2" type="button" onClick={handleAddToCart}>add to cart </button>
+                                        <Button className="btn btn-default mx-2" type="button" variant="primary" onClick={handleAddToCart}>Add to cart </Button>
                                     </div>
                                 </div>
                             </div>
