@@ -1,0 +1,56 @@
+.html {
+    padding: 0;
+    margin: 0px;
+}
+
+.sidebar {
+    background-color: azure;
+    flex: 2;
+    min-height: 100vh;
+    min-width: 23vw;
+    max-width: min(23vw, 350px);
+    border-right: 0.5px solid rgb(230, 227, 227);
+}
+
+.top {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.hr {
+    height: 0px;
+    border: 2px solid rgb(230, 227, 227);
+}
+
+.center {
+    padding-left: 10px;
+}
+
+.title {
+    font-weight: 700;
+    margin: 0px 10px;
+    text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+
+    html,
+    .logo {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 482px) {
+
+    html,
+    .logo {
+        font-size: 10px;
+    }
+}
