@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Card, CardBody, CardHeader, Col, Container, Form, Input, Label, Row } from 'reactstrap'
 import { loginUser } from './Service/UserService';
 import { toast } from 'react-toastify';
-import { login } from './Auth';
+import { isLoggedIn, login } from './Auth';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
@@ -10,6 +10,13 @@ function Login() {
     const navigate = useNavigate();
 
     const [loginData, setLoginData] = useState({ username: undefined, password: undefined });
+
+    useEffect(() => {
+        if (isLoggedIn()) {
+            navigate("/")
+        }
+    })
+
 
     const onFieldChange = (event, fieldName) => {
         const fieldValue = event.target.value
