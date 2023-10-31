@@ -116,8 +116,8 @@ function Cart() {
                             </div>
 
                             <div className="d-grid gap-2">
-                                <button className="btn btn-primary" type="button" onClick={handleCheckoutWithPayment} disabled={address == undefined || address == null || address == ''}>Pay Now</button>
-                                <button className="btn btn-primary" type="button" onClick={handleCheckoutWithoutPayment} disabled={address == undefined || address == null || address == ''}>Pay Later</button>
+                                <button className="btn btn-primary" type="button" onClick={handleCheckoutWithPayment} disabled={address === undefined || address === null || address === ''}>Pay Now</button>
+                                <button className="btn btn-primary" type="button" onClick={handleCheckoutWithoutPayment} disabled={address === undefined || address === null || address === ''}>Pay Later</button>
                             </div>
                         </>
                     }
