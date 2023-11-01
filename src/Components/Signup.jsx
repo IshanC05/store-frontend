@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import { Container, Row, Col, Card, CardBody, Label, Input, CardHeader, Button, Form } from 'reactstrap'
 import { createUser } from './Service/UserService';
 import { toast } from 'react-toastify';
+import Spinner from './Spinner'
 
 function Signup() {
 
     const [user, setUser] = useState({ name: undefined, email: undefined, password: undefined, phone: undefined, active: true, address: 'random' });
+
+    const [submitLoading, setSubmitLoading] = useState(false)
 
     const onFieldChange = (event, fieldName) => {
         const fieldValue = event.target.value
@@ -13,6 +16,7 @@ function Signup() {
     }
 
     const registerHandler = (event) => {
+        setSubmitLoading(true)
         event.preventDefault();
         createUser(user).then(data => {
             toast.success("User added");
@@ -21,6 +25,7 @@ function Signup() {
             const allErrors = error.response.data
             Object.values(allErrors).forEach(errorMessage => toast.error(errorMessage));
         })
+        setTimeout(() => setSubmitLoading(false), 3500)
     }
 
     const resetHandler = (event) => {
@@ -60,11 +65,11 @@ function Signup() {
                                     <Input type='tel' id='phone' placeholder='12345-67890' onChange={(event) => onFieldChange(event, 'phone')} value={user.phone || ''}></Input>
                                     {user.phone !== undefined && user.phone.length !== 10 && <span style={{ color: "red", marginLeft: "0px", marginTop: "5px", fontSize: "12px" }} className='text-center'>Invalid Phone number</span>}
                                 </div>
-
-                                <div className='my-3'>
+                                {submitLoading && <Spinner />}
+                                {!submitLoading && <div className='my-3'>
                                     <Button color='success'>Signup</Button>
                                     <Button color='warning' className='mx-3' onClick={resetHandler}>Reset</Button>
-                                </div>
+                                </div>}
                             </Form>
                         </CardBody>
                     </Card>

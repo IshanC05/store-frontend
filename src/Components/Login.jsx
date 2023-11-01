@@ -4,12 +4,15 @@ import { loginUser } from './Service/UserService';
 import { toast } from 'react-toastify';
 import { isLoggedIn, login } from './Auth';
 import { useNavigate } from 'react-router-dom';
+import Spinner from './Spinner'
 
 function Login() {
 
     const navigate = useNavigate();
 
     const [loginData, setLoginData] = useState({ username: undefined, password: undefined });
+
+    const [submitLoading, setSubmitLoading] = useState(false)
 
     useEffect(() => {
         if (isLoggedIn()) {
@@ -24,6 +27,7 @@ function Login() {
     }
 
     const handleLogin = (event) => {
+        setSubmitLoading(true)
         event.preventDefault();
         loginUser(loginData).then(data => {
             login(data, () => {
@@ -33,6 +37,7 @@ function Login() {
         }).catch(error => {
             const allErrors = error.response.data
             Object.values(allErrors).forEach(errorMessage => toast.error(errorMessage));
+            setSubmitLoading(false)
         })
     }
 
@@ -57,10 +62,10 @@ function Login() {
                                     <Input type='password' id='password' onChange={(event) => onFieldChange(event, 'password')} value={loginData.password || ''}></Input>
                                     {loginData.password === "" && <span style={{ color: "red", marginLeft: "0px", marginTop: "5px", fontSize: "12px" }} className='text-center'>Password cannot be empty</span>}
                                 </div>
-
-                                <div className='my-3'>
+                                {submitLoading && <Spinner />}
+                                {!submitLoading && <div className='my-3'>
                                     <Button color='success'>Login</Button>
-                                </div>
+                                </div>}
                             </Form>
                         </CardBody>
                     </Card>
