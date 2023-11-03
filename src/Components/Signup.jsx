@@ -25,7 +25,7 @@ function Signup() {
             const allErrors = error.response.data
             Object.values(allErrors).forEach(errorMessage => toast.error(errorMessage));
         })
-        setTimeout(() => setSubmitLoading(false), 3500)
+        setTimeout(() => setSubmitLoading(false), 1000)
     }
 
     const resetHandler = (event) => {

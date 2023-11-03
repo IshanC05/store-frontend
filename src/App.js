@@ -12,6 +12,10 @@ import Dashboard from './Components/Dashboard';
 import Cart from './Components/Cart';
 import CartContextProvider from './Components/Context/Cart/CartContextProvider';
 import Home from './Components/Home';
+import AdminDashboard from './Components/AdminDashboard';
+import AdminRoutes from './Components/AdminRoutes';
+import AdminOrders from './Components/AdminOrders';
+import ProductUpdate from './Components/ProductUpdate';
 
 function App() {
   return (
@@ -29,6 +33,11 @@ function App() {
             <Route element={<PrivateRoute />}>
               <Route path='dashboard' element={<Dashboard />} />
               <Route path='cart' element={<Cart />} />
+            </Route>
+            <Route element={<AdminRoutes />}>
+              <Route path='admin' element={<AdminDashboard />} />
+              <Route path='admin-orders' element={<AdminOrders />} />
+              <Route path='edit/:productId' element={<ProductUpdate />}></Route>
             </Route>
             <Route path="*" element={<p>There's nothing here: 404!</p>} />
           </Routes>

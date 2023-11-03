@@ -35,7 +35,7 @@ function Product() {
         const itemRequest = { productId: productId, quantity: 1 }
         const message = "Product added to the Cart"
         updateProductQuantity(itemRequest, message)
-        setTimeout(() => setSpinnerLoading(false), 3500)
+        setTimeout(() => setSpinnerLoading(false), 1000)
     }
 
     const getProductDataById = (productId) => {

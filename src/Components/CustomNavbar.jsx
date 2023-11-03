@@ -9,7 +9,7 @@ import {
     NavItem,
 
 } from 'reactstrap';
-import { getLoggedInUserDetails, isLoggedIn, logout } from './Auth';
+import { getLoggedInUserDetails, getRole, isLoggedIn, logout } from './Auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import CartContext from './Context/Cart/CartContext';
@@ -71,6 +71,11 @@ function CustomNavbar() {
                         </>}
                     {localStorage.getItem("data") && <>
                         <Nav>
+                            {getRole() === 'ROLE_ADMIN' && <NavItem style={{ marginRight: "35px" }}>
+                                <Link to="/admin" className='text-decoration-none pe-auto' >
+                                    Admin
+                                </Link>
+                            </NavItem>}
                             <NavItem style={{ marginRight: "35px" }}>
                                 <Link to="/cart" className='text-decoration-none pe-auto' >
                                     <FontAwesomeIcon icon={faCartShopping} />

@@ -19,6 +19,22 @@ export const getOrdersByUser = async () => {
     }
 };
 
+export const getAllOrdersForAdmin = async () => {
+    try {
+        const jwtToken = getToken()
+        const token = "Bearer " + jwtToken;
+        const response = await axios.get(`${baseURL}/order/findAll`, {
+            headers: {
+                "Authorization": token,
+                "Content-Type": "application/json"
+            }
+        })
+        return response.data.content
+    } catch (error) {
+        console.log(error)
+    }
+};
+
 export const placeOrder = async (orderRequest) => {
     try {
         const jwtToken = getToken()

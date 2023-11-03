@@ -2,9 +2,11 @@ import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Badge, Button } from 'reactstrap'
 import './CSS/productpage.scss'
-import { isLoggedIn } from './Auth';
+import { getRole, isLoggedIn } from './Auth';
 import CartContext from './Context/Cart/CartContext';
 import Spinner from './Spinner'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 
 
 function ProductItem({ product }) {
@@ -29,7 +31,11 @@ function ProductItem({ product }) {
         const itemRequest = { productId: productId, quantity: 1 }
         const message = "Product added to the Cart"
         updateProductQuantity(itemRequest, message)
-        setTimeout(() => setSpinnerLoading(false), 3500)
+        setTimeout(() => setSpinnerLoading(false), 1000)
+    }
+
+    const handleEdit = () => {
+        navigate("/edit/" + productId)
     }
 
     return (
@@ -47,6 +53,9 @@ function ProductItem({ product }) {
                     {spinnerLoading && <Spinner />}
                     {!spinnerLoading && <div className='d-flex justify-content-between'>
                         <Button color='info' size='xl' className='m-2' onClick={handleView}>View</Button >
+                        {getRole() === 'ROLE_ADMIN' && <Button color='info' size='xl' className='m-2' onClick={handleEdit}>
+                            <FontAwesomeIcon icon={faPenToSquare} style={{ color: "#000000", }} />
+                        </Button >}
                         <Button color='primary' size='sm' className='m-2' onClick={handleAddToCart}>Add to cart</Button>
                     </div>}
                 </div>

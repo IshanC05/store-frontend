@@ -23,3 +23,11 @@ export const getToken = () => {
 export const getLoggedInUserDetails = () => {
     return isLoggedIn() ? JSON.parse(localStorage.getItem("data")).user : null;
 }
+
+export const getRole = () => {
+    if (isLoggedIn()) {
+        const userData = getLoggedInUserDetails()
+        return userData.role
+    }
+    return null;
+}

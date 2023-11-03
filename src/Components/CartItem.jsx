@@ -20,14 +20,14 @@ function CartItem({ productId, productName, productDesc, imageName, productPrice
         const itemRequest = { productId, "quantity": value }
         const message = "Product Quantity updated"
         updateProductQuantity(itemRequest, message)
-        setTimeout(() => setQtyUpdateSpinner(false), 4500)
+        setTimeout(() => setQtyUpdateSpinner(false), 1000)
     }
 
     const handleDelete = () => {
         // console.log('Delete called for productId ' + productId)
         setDeleteSpinner(true)
         deleteProductFromCart(productId)
-        setTimeout(() => setDeleteSpinner(false), 4500)
+        setTimeout(() => setDeleteSpinner(false), 1000)
     }
 
     return (
