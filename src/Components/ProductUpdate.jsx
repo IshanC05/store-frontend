@@ -183,7 +183,8 @@ function ProductUpdate() {
                         </Card>
                     </Col>
                 </Row>
-            </Container></div>
+            </Container>
+        </div>
     )
 }
 

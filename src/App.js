@@ -16,6 +16,8 @@ import AdminDashboard from './Components/AdminDashboard';
 import AdminRoutes from './Components/AdminRoutes';
 import AdminOrders from './Components/AdminOrders';
 import ProductUpdate from './Components/ProductUpdate';
+import ErrorPage from './Components/ErrorPage';
+import CategoryUpdate from './Components/CategoryUpdate';
 
 function App() {
   return (
@@ -37,9 +39,10 @@ function App() {
             <Route element={<AdminRoutes />}>
               <Route path='admin' element={<AdminDashboard />} />
               <Route path='admin-orders' element={<AdminOrders />} />
-              <Route path='edit/:productId' element={<ProductUpdate />}></Route>
+              <Route path='product-edit/:productId' element={<ProductUpdate />}></Route>
+              <Route path='category-edit/:categoryId' element={<CategoryUpdate />}></Route>
             </Route>
-            <Route path="*" element={<p>There's nothing here: 404!</p>} />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </BrowserRouter>
       </CartContextProvider>

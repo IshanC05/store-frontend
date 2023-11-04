@@ -10,14 +10,21 @@ function AdminDashboard() {
                 <div className="card text-bg-info mb-3 mx-auto" style={{ maxWidth: "16rem" }}>
                     <Link to="/admin-orders" style={{ textDecoration: "none", color: "black", padding: "25px" }} >
                         <div className="card-body">
-                            <h1>Orders</h1>
+                            <h3>Orders</h3>
                         </div>
                     </Link>
                 </div>
                 <div className="card text-bg-success mb-3 mx-auto" style={{ maxWidth: "16rem" }}>
-                    <Link to={"/edit/" + "0"} style={{ textDecoration: "none", color: "black", padding: "25px" }}>
+                    <Link to={"/product-edit/" + "0"} style={{ textDecoration: "none", color: "black", padding: "25px" }}>
                         <div className="card-body">
-                            <h1>Products</h1>
+                            <h3>Products</h3>
+                        </div>
+                    </Link>
+                </div>
+                <div className="card text-bg-warning mb-3 mx-auto" style={{ maxWidth: "16rem" }}>
+                    <Link to={"/category-edit/" + "0"} style={{ textDecoration: "none", color: "black", padding: "25px" }}>
+                        <div className="card-body">
+                            <h3>Categories</h3>
                         </div>
                     </Link>
                 </div>

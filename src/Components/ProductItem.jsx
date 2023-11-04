@@ -35,7 +35,7 @@ function ProductItem({ product }) {
     }
 
     const handleEdit = () => {
-        navigate("/edit/" + productId)
+        navigate("/product-edit/" + productId)
     }
 
     return (
