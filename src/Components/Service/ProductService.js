@@ -29,3 +29,19 @@ export const updateExistingProductById = async (productId, productDetails) => {
         console.log(error)
     }
 }
+
+export const addNewProduct = async (categoryId, productDetails) => {
+    try {
+        const jwtToken = getToken()
+        const token = "Bearer " + jwtToken;
+        const response = await axios.post(`${baseURL}/product/create/${categoryId}`, productDetails, {
+            headers: {
+                "Authorization": token,
+                "Content-Type": "application/json"
+            }
+        })
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}

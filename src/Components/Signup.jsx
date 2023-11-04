@@ -19,7 +19,7 @@ function Signup() {
         setSubmitLoading(true)
         event.preventDefault();
         createUser(user).then(data => {
-            toast.success("User added");
+            toast.success("User added. Please use Login.");
             setUser({ name: undefined, email: undefined, password: undefined, phone: undefined, active: true, address: 'random' })
         }).catch(error => {
             const allErrors = error.response.data
