@@ -64,6 +64,7 @@ function CategoryUpdate() {
         if (categoryId !== '0') {
             getCategoryDetails()
         }
+        // eslint-disable-next-line
     }, [])
 
 
