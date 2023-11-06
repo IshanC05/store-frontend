@@ -31,6 +31,7 @@ function Product() {
         setSpinnerLoading(true)
         if (!isLoggedIn()) {
             navigate("/login")
+            return;
         }
         const itemRequest = { productId: productId, quantity: 1 }
         const message = "Product added to the Cart"

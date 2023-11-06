@@ -23,10 +23,15 @@ function ProductItem({ product }) {
         navigate("/product/" + productId)
     }
 
+    const maxCharacters = 80
+
+    const truncatedDesc = productDesc.length > maxCharacters ? `${productDesc.slice(0, maxCharacters)}...` : productDesc;
+
     const handleAddToCart = () => {
         setSpinnerLoading(true)
         if (!isLoggedIn()) {
             navigate("/login")
+            return;
         }
         const itemRequest = { productId: productId, quantity: 1 }
         const message = "Product added to the Cart"
@@ -49,7 +54,7 @@ function ProductItem({ product }) {
                             <Badge color='success' pill style={{ marginLeft: '5px' }}>{formattedProductPrice}</Badge>
                         </span>
                     </div>
-                    <p className="card-text">{productDesc}</p>
+                    <p className="card-text">{truncatedDesc}</p>
                     {spinnerLoading && <Spinner />}
                     {!spinnerLoading && <div className='d-flex justify-content-between'>
                         <Button color='info' size='xl' className='m-2' onClick={handleView}>View</Button >
