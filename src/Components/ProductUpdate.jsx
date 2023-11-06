@@ -82,6 +82,7 @@ function ProductUpdate() {
             getProductDataById(productId)
         getAllCategoriesData()
         // console.log(productId)
+        // eslint-disable-next-line
     }, [])
 
 
