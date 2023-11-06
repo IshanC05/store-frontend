@@ -12,6 +12,12 @@ import Dashboard from './Components/Dashboard';
 import Cart from './Components/Cart';
 import CartContextProvider from './Components/Context/Cart/CartContextProvider';
 import Home from './Components/Home';
+import AdminDashboard from './Components/AdminDashboard';
+import AdminRoutes from './Components/AdminRoutes';
+import AdminOrders from './Components/AdminOrders';
+import ProductUpdate from './Components/ProductUpdate';
+import ErrorPage from './Components/ErrorPage';
+import CategoryUpdate from './Components/CategoryUpdate';
 
 function App() {
   return (
@@ -30,7 +36,13 @@ function App() {
               <Route path='dashboard' element={<Dashboard />} />
               <Route path='cart' element={<Cart />} />
             </Route>
-            <Route path="*" element={<p>There's nothing here: 404!</p>} />
+            <Route element={<AdminRoutes />}>
+              <Route path='admin' element={<AdminDashboard />} />
+              <Route path='admin-orders' element={<AdminOrders />} />
+              <Route path='product-edit/:productId' element={<ProductUpdate />}></Route>
+              <Route path='category-edit/:categoryId' element={<CategoryUpdate />}></Route>
+            </Route>
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </BrowserRouter>
       </CartContextProvider>

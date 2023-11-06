@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { getOrdersByUser } from './Service/OrderService'
+import { getAllOrdersForAdmin } from './Service/OrderService'
 import OrderDetails from "./OrderDetails";
 import OrderList from "./OrderList";
 import Spinner from './Spinner';
 
-function Orders() {
+function AdminOrders() {
 
     const [orders, setOrders] = useState(null)
 
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        getOrdersByUser().then(content => {
-            // console.log(content)
+        getAllOrdersForAdmin().then(content => {
             setOrders(content)
             setLoading(false)
         }).catch(error => {
@@ -29,6 +28,8 @@ function Orders() {
     return (
         <div className="container mt-5">
             {loading && <Spinner />}
+            <h6>Admin</h6>
+            <hr />
             {orders && <div className='row'>
                 <OrderList orders={orders} onClick={handleOrderClick} />
                 {selectedOrder && <OrderDetails order={selectedOrder} />}
@@ -38,4 +39,4 @@ function Orders() {
     );
 }
 
-export default Orders
+export default AdminOrders

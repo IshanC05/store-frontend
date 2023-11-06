@@ -54,3 +54,18 @@
         font-size: 10px;
     }
 }
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.centered-title {
+    flex-grow: 1;
+    /* This will take up all available space, pushing the icon to the right */
+}
+
+.admin-icon {
+    margin-left: auto;
+}

@@ -5,14 +5,17 @@ import ProductItem from './ProductItem'
 import { loadProduct } from './Service/ProductService'
 import { useParams } from 'react-router-dom'
 import { loadProductByCategory } from './Service/CategoryService'
+import Spinner from './Spinner'
 
 
 function Store() {
 
     const [productDetails, setProductDetails] = useState(null)
+    const [loading, setLoading] = useState(true)
     const { categoryId } = useParams()
 
     useEffect(() => {
+        setLoading(true)
         getProduct()
         // eslint-disable-next-line
     }, [categoryId])
@@ -27,6 +30,7 @@ function Store() {
         }
         ob.then(data => {
             setProductDetails(data)
+            setLoading(false)
         }).catch(error => {
             console.log(error)
         })
@@ -36,6 +40,7 @@ function Store() {
         <div className='store'>
             <Sidebar />
             <div className="container">
+                {loading && <Spinner />}
                 <div className="row">
                     {(productDetails) && productDetails.content.map((each, index) => {
                         return <div className="col-md-4" key={index}>

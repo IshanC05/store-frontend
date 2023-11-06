@@ -5,6 +5,8 @@ import CartContext from './Context/Cart/CartContext'
 import { createTransaction, placeOrder } from './Service/OrderService'
 import { getLoggedInUserDetails } from './Auth'
 import { toast } from 'react-toastify'
+import useRazorpay from "react-razorpay";
+import Spinner from './Spinner'
 
 function Cart() {
 
@@ -24,8 +26,10 @@ function Cart() {
         // eslint-disable-next-line
     }, [])
 
+    const [Razorpay] = useRazorpay();
     const handlePayment = (response) => {
         const userdata = getLoggedInUserDetails();
+        console.log(response)
         const options = {
             order_id: response.orderId,
             key: response.key,
@@ -50,7 +54,7 @@ function Cart() {
             }
         }
 
-        const paymentObject = new window.Razorpay(options);
+        const paymentObject = new Razorpay(options);
 
         paymentObject.on("payment.failed", (response) => {
             console.log(response)
@@ -83,7 +87,7 @@ function Cart() {
         <>
             {
                 loading &&
-                <div>Loading...</div>
+                <Spinner />
             }
             {
                 !loading &&

@@ -1,34 +1,50 @@
 import React from 'react';
-import { UncontrolledCarousel } from 'reactstrap';
+import CarouselComponent from './CarouselComponent';
+import CardComponent from './CardComponent';
+import { Link } from 'react-router-dom';
 
 function Home() {
-    const productLinks = [
-        {
-            title: 'iPhone 13',
-            link: '/product/2',
-            imageSrc: 'https://images.unsplash.com/photo-1647503380147-e075b24f4cbe?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=2070',
-        },
-        {
-            title: 'Samsung LED',
-            link: '/product/3',
-            imageSrc: 'https://plus.unsplash.com/premium_photo-1681236323432-3df82be0c1b0?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=2070',
-        }
-    ];
 
-    // Create carousel items from the product links
-    const carouselItems = productLinks.map((product, index) => ({
-        altText: product.title,
-        caption: product.title,
-        key: index + 1,
-        src: product.imageSrc,
-    }));
+    const style = { textDecoration: "none" }
 
     return (
         <div className='container my-3'>
-            <h3 className='text-center'>Featured Products</h3>
-            <div className='container my-3 d-flex justify-content-center'>
-
-                <UncontrolledCarousel interval={4000} items={carouselItems} style={{ maxHeight: "400px", maxWidth: "900px" }} />
+            <div>
+                <CarouselComponent />
+            </div>
+            <div className="my-3">
+                <hr />
+                <h3 className='text-center'>Shop by category</h3>
+                <hr />
+                <div className='my-3' style={{ marginBottom: "15px" }}>
+                    <div className="row">
+                        <div className="col-md-4">
+                            <Link to="/store/1" style={style}>
+                                <CardComponent
+                                    title="Electronics"
+                                    imageSrc="https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                    description="Browse our electronics collection."
+                                />
+                            </Link>
+                        </div>
+                        <div className="col-md-4">
+                            <Link to="/store/all" style={style}>
+                                <CardComponent
+                                    title="Clothing"
+                                    imageSrc="https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                    description="Explore our latest clothing styles."
+                                />
+                            </Link>
+                        </div>
+                        <div className="col-md-4" style={style}>
+                            <CardComponent
+                                title="Furniture"
+                                imageSrc="https://images.unsplash.com/photo-1540574163026-643ea20ade25?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                description="Find the perfect furniture for your home."
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

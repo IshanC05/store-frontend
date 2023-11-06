@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import './CSS/cartitem.scss'
 import { Link } from 'react-router-dom'
 import CartContext from './Context/Cart/CartContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import Spinner from './Spinner'
 
 function CartItem({ productId, productName, productDesc, imageName, productPrice, quantity }) {
 
@@ -11,15 +12,22 @@ function CartItem({ productId, productName, productDesc, imageName, productPrice
 
     const formattedProductPrice = productPrice ? formatPrice(productPrice) : formatPrice(0);
 
+    const [deleteSpinner, setDeleteSpinner] = useState(false)
+    const [qtyUpdateSpinner, setQtyUpdateSpinner] = useState(false)
+
     const handleQuantityUpdate = (value) => {
+        setQtyUpdateSpinner(true)
         const itemRequest = { productId, "quantity": value }
         const message = "Product Quantity updated"
         updateProductQuantity(itemRequest, message)
+        setTimeout(() => setQtyUpdateSpinner(false), 1000)
     }
 
     const handleDelete = () => {
         // console.log('Delete called for productId ' + productId)
+        setDeleteSpinner(true)
         deleteProductFromCart(productId)
+        setTimeout(() => setDeleteSpinner(false), 1000)
     }
 
     return (
@@ -40,19 +48,21 @@ function CartItem({ productId, productName, productDesc, imageName, productPrice
                                     </Link>
                                 </h5>
                                 <Link to="/cart" className='text-decoration-none pe-auto'>
-                                    <span className=''>
+                                    {deleteSpinner && <Spinner />}
+                                    {!deleteSpinner && <span className=''>
                                         <FontAwesomeIcon icon={faTrash} style={{ color: "#ff0000", }} onClick={handleDelete} />
-                                    </span>
+                                    </span>}
                                 </Link>
                             </div>
                             <p className="card-text">{productDesc}</p>
                             <div className="d-flex justify-content-between">
                                 <span className="card-text">{formattedProductPrice}</span>
-                                <div style={{ padding: "2px" }}>
+                                {qtyUpdateSpinner && <Spinner />}
+                                {!qtyUpdateSpinner && <div style={{ padding: "2px" }}>
                                     <button type="button" className="btn btn-primary btn-sm" onClick={() => handleQuantityUpdate(+1)}>+</button>
                                     <span style={{ margin: "0px 15px" }}>{quantity}</span>
                                     <button type="button" className="btn btn-primary btn-sm" onClick={() => handleQuantityUpdate(-1)} disabled={quantity === 1}>-</button>
-                                </div>
+                                </div>}
                             </div>
                         </div>
                     </div>

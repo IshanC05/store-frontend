@@ -4,6 +4,7 @@ import { loadProductByProductId } from './Service/ProductService'
 import CartContext from './Context/Cart/CartContext'
 import { isLoggedIn } from './Auth'
 import { Button } from 'reactstrap'
+import Spinner from './Spinner'
 
 function Product() {
 
@@ -13,6 +14,8 @@ function Product() {
 
     const [productData, setProductData] = useState(null)
     const [loading, setLoading] = useState(true);
+
+    const [spinnerLoading, setSpinnerLoading] = useState(false)
 
     const { updateProductQuantity, formatPrice } = useContext(CartContext)
 
@@ -25,12 +28,15 @@ function Product() {
 
 
     const handleAddToCart = () => {
+        setSpinnerLoading(true)
         if (!isLoggedIn()) {
             navigate("/login")
+            return;
         }
         const itemRequest = { productId: productId, quantity: 1 }
         const message = "Product added to the Cart"
         updateProductQuantity(itemRequest, message)
+        setTimeout(() => setSpinnerLoading(false), 1000)
     }
 
     const getProductDataById = (productId) => {
@@ -44,6 +50,7 @@ function Product() {
 
     return (
         <>
+            {loading && <Spinner />}
             {!loading &&
                 <div className="container my-5">
                     <div className="card border-0">
@@ -58,9 +65,10 @@ function Product() {
                                     <h3 className="product-title my-5 text-start provide-margin-left">{productData.productName}</h3>
                                     <p className="product-description text-wrap provide-margin-left">{productData.productDesc}</p>
                                     <h4 className="price provide-margin-left">Price: <span>{formattedProductPrice}</span></h4>
-                                    <div className="action my-5">
+                                    {spinnerLoading && <Spinner />}
+                                    {!spinnerLoading && <div className="action my-5">
                                         <Button className="btn btn-default mx-2" type="button" variant="primary" onClick={handleAddToCart}>Add to cart </Button>
-                                    </div>
+                                    </div>}
                                 </div>
                             </div>
                         </div>
