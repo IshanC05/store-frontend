@@ -28,7 +28,7 @@ function Home() {
                             </Link>
                         </div>
                         <div className="col-md-4">
-                            <Link to="/store/all" style={style}>
+                            <Link to="/store/3" style={style}>
                                 <CardComponent
                                     title="Clothing"
                                     imageSrc="https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -37,11 +37,13 @@ function Home() {
                             </Link>
                         </div>
                         <div className="col-md-4" style={style}>
-                            <CardComponent
-                                title="Furniture"
-                                imageSrc="https://images.unsplash.com/photo-1540574163026-643ea20ade25?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                description="Find the perfect furniture for your home."
-                            />
+                            <Link to="/store/4" style={style}>
+                                <CardComponent
+                                    title="Furniture"
+                                    imageSrc="https://images.unsplash.com/photo-1540574163026-643ea20ade25?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                    description="Find the perfect furniture for your home."
+                                />
+                            </Link>
                         </div>
                     </div>
                 </div>
