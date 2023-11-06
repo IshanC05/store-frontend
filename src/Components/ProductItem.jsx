@@ -25,7 +25,7 @@ function ProductItem({ product }) {
 
     const maxCharacters = 80
 
-    const truncatedDesc = productDesc.length > maxCharacters ? `${productDesc.slice(0, maxCharacters)}...` : productDesc;
+    const truncatedDesc = (productDesc && productDesc.length) > maxCharacters ? `${productDesc.slice(0, maxCharacters)}...` : productDesc;
 
     const handleAddToCart = () => {
         setSpinnerLoading(true)
