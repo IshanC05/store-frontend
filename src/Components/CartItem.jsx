@@ -12,6 +12,10 @@ function CartItem({ productId, productName, productDesc, imageName, productPrice
 
     const formattedProductPrice = productPrice ? formatPrice(productPrice) : formatPrice(0);
 
+    const maxCharacters = 80
+
+    const truncatedDesc = (productDesc && productDesc.length) > maxCharacters ? `${productDesc.slice(0, maxCharacters)}...` : productDesc;
+
     const [deleteSpinner, setDeleteSpinner] = useState(false)
     const [qtyUpdateSpinner, setQtyUpdateSpinner] = useState(false)
 
@@ -54,7 +58,7 @@ function CartItem({ productId, productName, productDesc, imageName, productPrice
                                     </span>}
                                 </Link>
                             </div>
-                            <p className="card-text">{productDesc}</p>
+                            <p className="card-text">{truncatedDesc}</p>
                             <div className="d-flex justify-content-between">
                                 <span className="card-text">{formattedProductPrice}</span>
                                 {qtyUpdateSpinner && <Spinner />}
