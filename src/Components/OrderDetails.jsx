@@ -46,7 +46,7 @@ const OrderDetails = ({ order }) => {
                         <strong>Payment Method:</strong> {order.paymentMethod}
                     </p>}
                     <p>
-                        <strong>Payment Status:</strong> {order.orderStatus}
+                        <strong>Order Status:</strong> {order.orderStatus}
                     </p>
                     <p>
                         <strong>Payment Status:</strong> {order.paymentStatus}
